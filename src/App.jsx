@@ -12,6 +12,7 @@ import useMovies from "./components/useMovies.js";
 import ListMovies from "./components/Novedades.jsx";
 import Novedades from "./components/Novedades.jsx";
 import Populares from "./components/Populares.jsx";
+import TopRated from "./components/TopRated.jsx";
 
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/" element={<CarrouselHome movies={data}/>}></Route>
         <Route path="/novedades" element={<Novedades/>}></Route>
         <Route path="/populares" element={<Populares/>}></Route>
+        <Route path="/top10" element={<TopRated/>}></Route>
       </Routes>
     </BrowserRouter>
   )

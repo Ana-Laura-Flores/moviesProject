@@ -47,15 +47,16 @@ export default function DetailMovie() {
         backgroundPosition: "center",
         display: "flex",
         justifyContent: "center",
-        zIndex: -1
+        zIndex: -1,
+        height: "100%"
         
         
       }}
     >
       <Box
         sx={{
-          maxWidth: 1200,
-          padding: "10px",
+          
+          padding: "5px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

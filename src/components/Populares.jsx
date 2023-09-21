@@ -31,8 +31,7 @@ export default function Populares() {
           fontWeight: "bold",
         }}
       >
-        {" "}
-        Novedades{" "}
+        Populares
       </Paper>
       <Box>
         <ContainCards data={data}/>

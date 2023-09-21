@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CarrouselLoMasVotado from "./CarrouselLoMasVotado";
+import CarrouselPopulares from "./CarrouselPopulares";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -66,6 +67,7 @@ export default function CarrouselHome({ movies }) {
             </div>
           ))}
       </Carousel>
+      <CarrouselPopulares/>
       <CarrouselLoMasVotado/>
       {/* {id && <DetailMovie movieId={id} />} */}
     </Box>
