@@ -11,11 +11,11 @@ export default function TrailerViewer({id}) {
     getData(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`
     );
-    //getData(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
+    
   }, []);
   const videoId = data.length > 0 ? data[0].key : null;
   console.log(videoId)
-  //https://api.themoviedb.org/3/movie/1008042/videos?api_key=2515b2b49a4b6e8f7589cb2703b71625
+  
 
   const opts = {
     height: "500",

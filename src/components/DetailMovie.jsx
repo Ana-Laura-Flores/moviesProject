@@ -29,30 +29,16 @@ export default function DetailMovie() {
     setShowTrailer(true);
   };
 
-  // const {genres} = details;
-  // console.log(genres.map((gen => console.log(gen))));
-  // console.log(details.genres)
-
-  //genres.filter(genre => {console.log(genre.name)})
-  //console.log(id);
-  // const oneMovie = data.find((movie) => movie.id == id);
-  //console.log(oneMovie)
-  //const genresAll = `https://api.themoviedb.org/3/genre/movie/list?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
-
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
-  //https://api.themoviedb.org/3/genre/movie/list?api_key=2515b2b49a4b6e8f7589cb2703b71625
+ 
 
   useEffect(() => {
     getDetailsData(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
     );
   }, []);
-  // console.log(
-  //   `https://image.tmdb.org/t/p/original${oneMovie.poster_path}?api_key=${apiKey}`
-  // );
-  console.log(details);
-  console.log(id);
+ 
   return (
     <Box
       sx={{
@@ -61,8 +47,9 @@ export default function DetailMovie() {
         backgroundPosition: "center",
         display: "flex",
         justifyContent: "center",
-        zIndex: -1,
-        flexDirection: { xs: "column", md: "row" },
+        zIndex: -1
+        
+        
       }}
     >
       <Box
@@ -76,21 +63,15 @@ export default function DetailMovie() {
           height: "100vh",
         }}
       >
-        {/* <CardMedia
-        component="img"
-        alt="green iguana"
-        
-        height="300"
-        image={oneMovie ? `https://image.tmdb.org/t/p/original${oneMovie.poster_path}?api_key=${apiKey}` : ""}
-        
-        key={id}
-      /> */}
+       
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "center",
             width: "70%",
+            marginTop: {xs: 10}
           }}
         >
           <img
@@ -102,15 +83,18 @@ export default function DetailMovie() {
             alt=""
             style={{ width: "45%" }}
           />
-          <Box marginLeft={5}>
+          <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "60%"}, alignItems: "center", marginTop: {xs: 3}}}>
             <Typography gutterBottom variant="h4" component="div">
               {details.title}
               <Typography></Typography>
             </Typography>
+            <Typography component="div" marginTop="5px" variant="h6">
+              Descripción:
+              </Typography>
             <Typography variant="body2" color="text.secondary">
               {details.overview}
             </Typography>
-            <Typography component="div" marginTop="5px" variant="h6">
+            <Typography component="div" marginTop={1} variant="h6">
               Géneros:
               <Typography gutterBottom marginLeft="10px" component="div">
                 {genres.map((genre) => (
