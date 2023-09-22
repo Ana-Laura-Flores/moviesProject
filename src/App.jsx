@@ -13,6 +13,7 @@ import ListMovies from "./components/Novedades.jsx";
 import Novedades from "./components/Novedades.jsx";
 import Populares from "./components/Populares.jsx";
 import TopRated from "./components/TopRated.jsx";
+import Footer from "./components/Footer.jsx";
 
 
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
 
   
   useEffect(() => {
-    getData(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`)
+    getData(`https://api.themoviedb.org/3/movie/now_playing?language=es-ES&api_key=${apiKey}`)
     //getData(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`)
   
   },  [])
@@ -50,6 +51,7 @@ export default function App() {
         <Route path="/populares" element={<Populares/>}></Route>
         <Route path="/top10" element={<TopRated/>}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
   

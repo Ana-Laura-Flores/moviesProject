@@ -35,7 +35,7 @@ export default function DetailMovie() {
 
   useEffect(() => {
     getDetailsData(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+      `https://api.themoviedb.org/3/movie/${id}?language=es-ES&api_key=${apiKey}`
     );
   }, []);
  

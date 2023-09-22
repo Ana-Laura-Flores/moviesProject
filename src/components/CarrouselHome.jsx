@@ -25,7 +25,7 @@ export default function CarrouselHome({ movies }) {
         autoPlay={true}
         onClickItem={handleClick}
         dynamicHeight={false}
-        interval={1000}
+        interval={2000}
       >
         {movies &&
           movies.map((movie) => (

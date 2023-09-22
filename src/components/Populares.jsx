@@ -1,16 +1,18 @@
 import { Box, Paper } from "@mui/material";
 import React from "react";
 import ContainCards from "./ContainCards";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useMovies from "./useMovies";
+import PaginationApp from './PaginationApp';
 
 
 export default function Populares() {
     const { getData, data } = useMovies([]);
+    const [currentPage, setCurrentPage] = useState(1)
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
     useEffect(() => {
-      getData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
-    },  [])
+      getData(`https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
+    },  [currentPage])
   return (
     <Box
       sx={{
@@ -36,6 +38,7 @@ export default function Populares() {
       <Box>
         <ContainCards data={data}/>
       </Box>
+      <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </Box>
   );
 }
