@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { CardActionArea, CardContent, CardMedia, Typography, Card, Paper } from '@mui/material';
+import { CardActionArea, CardContent, CardMedia, Typography, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { flexbox } from '@mui/system';
+
 
 export default function CardMovie({title, id, backdrop_path, overview}) {
   const image_path = "https://image.tmdb.org/t/p/original"

@@ -57,8 +57,8 @@ export default function CarrouselPopulares() {
         //  onSwiper={(swiper) => (swiper)}
       >
         {/* <Link to={`/`} style={{cursor:"pointer"}}> */}
-        {data &&
-          data.map((movie) => (
+        {data.results &&
+          data.results.map((movie) => (
             <SwiperSlide
               key={movie.id}
               onClick={() => handleClick(movie.id)}

@@ -37,7 +37,7 @@ export default function TopRated() {
         Más Votadas
       </Paper>
       <Box>
-        <ContainCards data={data}/>
+        <ContainCards data={data.results}/>
       </Box>
       <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </Box>

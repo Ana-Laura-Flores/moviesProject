@@ -1,8 +1,6 @@
-import Box from "@mui/material/Box"
+import{ Box} from "@mui/material"
 
 import CardMovie from "./CardMovie"
-import Header from "./Header"
-
 
 export default function ContainCards({data}) {
  

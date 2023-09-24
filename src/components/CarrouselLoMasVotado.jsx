@@ -16,20 +16,16 @@ export default function CarrouselLoMasVotado() {
   const { data, getData } = useMovies([]);
   const [id, setId] = useState("");
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  
-  
 
   useEffect(() => {
     getData(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`);
-    
   }, []);
-  
-  
+
   const handleClick = (movieId) => {
     setId(movieId.id);
     // setMoviePop(...data, data)
     // console.log(moviePop)
-    
+
     //  <DetailMovie id={id} movies={moviePop}/>
   };
   console.log(id);
@@ -57,12 +53,9 @@ export default function CarrouselLoMasVotado() {
         //  onSwiper={(swiper) => (swiper)}
       >
         {/* <Link to={`/`} style={{cursor:"pointer"}}> */}
-        {data &&
-          data.map((movie) => (
-            <SwiperSlide
-              key={movie.id}
-              onClick={() => handleClick(movie.id)}
-            >
+        {data.results &&
+          data.results.map((movie) => (
+            <SwiperSlide key={movie.id} onClick={() => handleClick(movie.id)}>
               <Link to={`/detailMovies/${movie.id}`}>
                 <img
                   style={{

@@ -36,7 +36,7 @@ export default function Populares() {
         Populares
       </Paper>
       <Box>
-        <ContainCards data={data}/>
+        <ContainCards data={data.results}/>
       </Box>
       <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </Box>

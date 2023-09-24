@@ -6,16 +6,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 import { Box } from "@mui/material";
+import { RiseLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 
 
-export default function CarrouselHome({ movies }) {
+export default function CarrouselHome({ movies, loading }) {
   const [id, setId] = useState(null);
-  console.log(movies);
-
+  
   const handleClick = (movieId) => {
     setId(movieId.id);
-    console.log(movieId);
   };
 
   return (
@@ -27,6 +26,7 @@ export default function CarrouselHome({ movies }) {
         dynamicHeight={false}
         interval={2000}
       >
+         {/* <RiseLoader loading={loading} color="#FFF" /> */}
         {movies &&
           movies.map((movie) => (
             <div key={movie.id} style={{ maxHeight: "450px" }}>
