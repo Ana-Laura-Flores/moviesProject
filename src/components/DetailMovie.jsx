@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useMovies from "./useMovies";
+import notImageBackdrop from '../assets/img/not-image-backdrop.jpg'
+import notImagenPoster from '../assets/img/not-image-poster.jpg'
 
 export default function DetailMovie() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
@@ -39,7 +41,7 @@ export default function DetailMovie() {
   return (
     <Box
       sx={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4)), url(https://image.tmdb.org/t/p/original${data.backdrop_path}?api_key=${apiKey})`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4)), url( ${ data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}?api_key=${apiKey}` : notImageBackdrop})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
@@ -74,9 +76,9 @@ export default function DetailMovie() {
         >
           <img
             src={
-              data
+              data.poster_path
                 ? `https://image.tmdb.org/t/p/original${data.poster_path}?api_key=${apiKey}`
-                : ""
+                : notImagenPoster
             }
             alt=""
             style={{ width: "45%" }}

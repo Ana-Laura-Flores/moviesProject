@@ -17,6 +17,8 @@ export default function App() {
 
   const [searchMovie, setSearchMovie] = useState("");
   const { getData, data, loading } = useMovies([]);
+  
+  
 
   useEffect(() => {
     getData(
@@ -36,7 +38,7 @@ export default function App() {
         <Route path="/novedades" element={<Novedades />}></Route>
         <Route path="/populares" element={<Populares />}></Route>
         <Route path="/top10" element={<TopRated />}></Route>
-        <Route path="/search" element={<SearchMovie />}></Route>
+        <Route path="/buscar" element={<SearchMovie />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

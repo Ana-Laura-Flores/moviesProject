@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { CardActionArea, CardContent, CardMedia, Typography, Paper } from '@mui/material';
 import { Link } from 'react-router-dom';
+import notImageBackdrop from '../assets/img/not-image-backdrop.jpg'
 
 
 export default function CardMovie({title, id, backdrop_path, overview}) {
@@ -15,7 +16,7 @@ export default function CardMovie({title, id, backdrop_path, overview}) {
           <CardMedia
             component="img"
             height="300"
-            image={`${image_path}${backdrop_path}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`}
+            image={ backdrop_path ? `${image_path}${backdrop_path}?api_key=${import.meta.env.VITE_TMDB_API_KEY}`: notImageBackdrop }
             alt={title}
             key={id}
           />

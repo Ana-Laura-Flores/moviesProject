@@ -11,8 +11,8 @@ export default function useMovies(initialValue) {
     try {
       const { data } = await axios.get(url);
       setData(data);
-      //setLoading(false)
       data.genres ? setGenres(data.genres) : null;
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
