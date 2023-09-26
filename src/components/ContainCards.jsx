@@ -1,14 +1,16 @@
 import{ Box} from "@mui/material"
 
 import CardMovie from "./CardMovie"
+import PaginationApp from "./PaginationApp"
 
-export default function ContainCards({data}) {
+export default function ContainCards({data, currentPage, setCurrentPage, totalPages}) {
  
   //console.log(movies)
+  //const [currentPage, setCurrentPage] = useState(1)
   return (
     <div>
-     
-      <Box sx={{
+     <Box>
+     <Box sx={{
         display:"flex", 
         justifyContent:"space-around", 
         flexWrap:"wrap",
@@ -20,6 +22,9 @@ export default function ContainCards({data}) {
         })}
        
       </Box>
+      <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
+     </Box>
+    
     </div>
   )
 }

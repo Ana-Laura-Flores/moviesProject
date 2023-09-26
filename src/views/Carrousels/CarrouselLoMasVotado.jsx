@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useMovies from "./useMovies";
+import useMovies from "../../customHooks/useMovies";
 
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -12,24 +12,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export default function CarrouselPopulares() {
+export default function CarrouselLoMasVotado() {
   const { data, getData } = useMovies([]);
   const [id, setId] = useState("");
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  
-  
 
   useEffect(() => {
-    getData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
-    
+    getData(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`);
   }, []);
-  
-  
+
   const handleClick = (movieId) => {
     setId(movieId.id);
     // setMoviePop(...data, data)
     // console.log(moviePop)
-    
+
     //  <DetailMovie id={id} movies={moviePop}/>
   };
   console.log(id);
@@ -44,7 +40,7 @@ export default function CarrouselPopulares() {
           marginBottom: "10px",
         }}
       >
-        Populares
+        Lo más votado
       </Typography>
       <Swiper
         modules={[Navigation, Pagination]}
@@ -59,10 +55,7 @@ export default function CarrouselPopulares() {
         {/* <Link to={`/`} style={{cursor:"pointer"}}> */}
         {data.results &&
           data.results.map((movie) => (
-            <SwiperSlide
-              key={movie.id}
-              onClick={() => handleClick(movie.id)}
-            >
+            <SwiperSlide key={movie.id} onClick={() => handleClick(movie.id)}>
               <Link to={`/detailMovies/${movie.id}`}>
                 <img
                   style={{

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import YouTube from "react-youtube";
-import useMovies from "./useMovies";
+import useMovies from "../customHooks/useMovies";
 
 export default function TrailerViewer({ id }) {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;

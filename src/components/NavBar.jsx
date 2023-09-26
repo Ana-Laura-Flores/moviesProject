@@ -20,7 +20,7 @@ import MovieIcon from "@mui/icons-material/Movie";
 
 const pages = ["Novedades", "Populares", "Top10", "Buscar"];
 
-export default function NavBar({ setSearchMovie }) {
+export default function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   // const [searchMovie, setSearchMovie] = useState("")
