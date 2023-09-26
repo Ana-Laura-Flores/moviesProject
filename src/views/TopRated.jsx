@@ -1,14 +1,14 @@
 import { Box, Paper } from "@mui/material";
 import React from "react";
-import ContainCards from "./ContainCards";
-import PaginationApp from './PaginationApp';
+import ContainCards from "../components/ContainCards";
+import PaginationApp from '../components/PaginationApp';
 import { useEffect, useState } from "react";
-import useMovies from "./useMovies";
+import useMovies from "../customHooks/useMovies";
 
 
 
 export default function TopRated() {
-    const { getData, data } = useMovies([]);
+    const { getData, data, totalPages } = useMovies([]);
     const [currentPage, setCurrentPage] = useState(1)
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
     useEffect(() => {
@@ -37,9 +37,9 @@ export default function TopRated() {
         Más Votadas
       </Paper>
       <Box>
-        <ContainCards data={data.results}/>
+        <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
       </Box>
-      <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+      
     </Box>
   );
 }

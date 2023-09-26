@@ -9,15 +9,15 @@ import {
   Box,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import useMovies from "./useMovies";
+import useMovies from "../customHooks/useMovies";
 import notImageBackdrop from '../assets/img/not-image-backdrop.jpg'
 import notImagenPoster from '../assets/img/not-image-poster.jpg'
 
 export default function DetailMovie() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const { id } = useParams();
-  const { data, genres, getData } = useMovies([]);
-  const [showTrailer, setShowTrailer] = useState(false);
+  const { data, genres, getData, yearMovie } = useMovies([]);
+  
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   const openVideoModal = () => {
@@ -28,9 +28,7 @@ export default function DetailMovie() {
     setIsVideoModalOpen(false);
   };
 
-  const handleShowTrailer = () => {
-    setShowTrailer(true);
-  };
+  
 
   useEffect(() => {
     getData(
@@ -41,7 +39,7 @@ export default function DetailMovie() {
   return (
     <Box
       sx={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4)), url( ${ data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}?api_key=${apiKey}` : notImageBackdrop})`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4)), url( ${ data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}?api_key=${apiKey}` : notImageBackdrop })`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         display: "flex",
@@ -70,7 +68,7 @@ export default function DetailMovie() {
             flexDirection: { xs: "column", md: "row" },
             justifyContent: "center",
             alignItems: "center",
-            width: "70%",
+            width: "90%",
             marginTop: {xs: 1}
           }}
         >
@@ -81,17 +79,17 @@ export default function DetailMovie() {
                 : notImagenPoster
             }
             alt=""
-            style={{ width: "45%" }}
+            style={{ width: "30%" }}
           />
-          <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "60%"}, alignItems: "center", marginTop: {xs: 3}}}>
-            <Typography gutterBottom variant="h4" component="div">
-              {data.title}
-              <Typography></Typography>
+          <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "60%", md:"95%"}, alignItems: "center", marginTop: {xs: 3}, padding: 3, borderRadius:"10px", backgroundColor:"#FFFFFF80"}}>
+            <Typography gutterBottom variant="h4" component="div" sx={{display:"flex", flexDirection: {xs:"column", md:"row"}, alignItems:"center"}}> 
+              {data.title} 
+              <Typography variant="h5" sx={{marginLeft: 1, fontWeight:"bold", color:"#333" }}> {yearMovie}</Typography>
             </Typography>
             <Typography component="div" marginTop="5px" variant="h6">
               Descripción:
               </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="black">
               {data.overview}
             </Typography>
             <Typography component="div" marginTop={1} variant="h6">

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import CarrouselLoMasVotado from "./CarrouselLoMasVotado";
-import CarrouselPopulares from "./CarrouselPopulares";
+import React, { useState, useEffect } from "react";
+import CarrouselLoMasVotado from "./Carrousels/CarrouselLoMasVotado";
+import CarrouselPopulares from "./Carrousels/CarrouselPopulares";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -8,10 +8,22 @@ import { Carousel } from "react-responsive-carousel";
 import { Box } from "@mui/material";
 import { RiseLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import useMovies from "../customHooks/useMovies.js"
 
 
-export default function CarrouselHome({ movies, loading }) {
+export default function CarrouselHome() {
+  const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+  const { getData, data, loading } = useMovies([]);
+ 
+
+
   const [id, setId] = useState(null);
+  
+  useEffect(() => {
+    getData(
+      `https://api.themoviedb.org/3/movie/now_playing?language=es-ES&api_key=${apiKey}`
+    );
+  }, []);
   
   const handleClick = (movieId) => {
     setId(movieId.id);
@@ -26,9 +38,13 @@ export default function CarrouselHome({ movies, loading }) {
         dynamicHeight={false}
         interval={2000}
       >
-         {/* <RiseLoader loading={loading} color="#FFF" /> */}
-        {movies &&
-          movies.map((movie) => (
+         {/*  */}
+        {!data.results ? 
+          <Box height={"auto"} padding={5}>
+            <RiseLoader loading={loading} sx={{color: "black",  padding: 2, height: "30px"}}/>
+          </Box> 
+          :
+          data.results.map((movie) => (
             <div key={movie.id} style={{ maxHeight: "450px" }}>
               <img
                 src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}

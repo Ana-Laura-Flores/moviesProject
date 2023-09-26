@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Box, InputBase } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
-import useMovies from "./useMovies.js";
-import ContainCards from "./ContainCards.jsx";
+import useMovies from "../customHooks/useMovies.js";
+import ContainCards from "../components/ContainCards.jsx";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -48,28 +49,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchMovie() {
   const [keywordSearch, setKeywordSearch] = useState("");
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  const { getData, data } = useMovies([]);
+  const [currentPage, setCurrentPage] = useState(1)
+  const { getData, data, totalPages } = useMovies([]);
 
   
 
   useEffect(() => {
     getData(
       keywordSearch
-        ? `https://api.themoviedb.org/3/search/movie?language=es-ES&api_key=${apiKey}&query=${keywordSearch}`
+        ? `https://api.themoviedb.org/3/search/movie?language=es-ES&page=${currentPage}&api_key=${apiKey}&query=${keywordSearch}`
         : `https://api.themoviedb.org/3/movie/now_playing?language=es-ES&api_key=${apiKey}`
     );
-  }, [keywordSearch]);
+  }, [keywordSearch, currentPage]);
+
   const handleChangeInput = (e) => {
-    //     // e.preventDefault()
     setKeywordSearch(e.target.value);
-    //     //setCurrentPage(1);
-    //     //console.log(e.target.value)
   };
 
-  //console.log(searchMovie)
   return (
     <Box>
-      <Box sx={{ flexGrow: 0 }}>
+      <Box sx={{ flexGrow: 0, padding:3, backgroundColor: "#1e1e1e", color:"whitesmoke" }}>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -77,13 +76,14 @@ export default function SearchMovie() {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
-            onChange={handleChangeInput}
-            //onChange={(e) => setKeywordSearch (e.target.value)}
+            //onChange={handleChangeInput}
+            onChange={(e) => setKeywordSearch (e.target.value)}
           />
         </Search>
+       
       </Box>
       <Box>
-        <ContainCards data={data.results} />
+        <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
       </Box>
     </Box>
   );
