@@ -23,12 +23,9 @@ export default function CarrouselLoMasVotado() {
 
   const handleClick = (movieId) => {
     setId(movieId.id);
-    // setMoviePop(...data, data)
-    // console.log(moviePop)
-
-    //  <DetailMovie id={id} movies={moviePop}/>
+    
   };
-  console.log(id);
+  
   return (
     <Box sx={{ marginTop: "50px", margin: "15px" }}>
       <Typography

@@ -5,8 +5,6 @@ import PaginationApp from "./PaginationApp"
 
 export default function ContainCards({data, currentPage, setCurrentPage, totalPages}) {
  
-  //console.log(movies)
-  //const [currentPage, setCurrentPage] = useState(1)
   return (
     <div>
      <Box>

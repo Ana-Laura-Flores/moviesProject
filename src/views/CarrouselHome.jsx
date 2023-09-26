@@ -8,23 +8,19 @@ import { Carousel } from "react-responsive-carousel";
 import { Box } from "@mui/material";
 import { RiseLoader } from "react-spinners";
 import { Link } from "react-router-dom";
-import useMovies from "../customHooks/useMovies.js"
-
+import useMovies from "../customHooks/useMovies.js";
 
 export default function CarrouselHome() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const { getData, data, loading } = useMovies([]);
- 
-
-
   const [id, setId] = useState(null);
-  
+
   useEffect(() => {
     getData(
       `https://api.themoviedb.org/3/movie/now_playing?language=es-ES&api_key=${apiKey}`
     );
   }, []);
-  
+
   const handleClick = (movieId) => {
     setId(movieId.id);
   };
@@ -38,12 +34,14 @@ export default function CarrouselHome() {
         dynamicHeight={false}
         interval={2000}
       >
-         {/*  */}
-        {!data.results ? 
+        {!data.results ? (
           <Box height={"auto"} padding={5}>
-            <RiseLoader loading={loading} sx={{color: "black",  padding: 2, height: "30px"}}/>
-          </Box> 
-          :
+            <RiseLoader
+              loading={loading}
+              sx={{ color: "black", padding: 2, height: "30px" }}
+            />
+          </Box>
+        ) : (
           data.results.map((movie) => (
             <div key={movie.id} style={{ maxHeight: "450px" }}>
               <img
@@ -81,10 +79,11 @@ export default function CarrouselHome() {
                 </Link>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </Carousel>
-      <CarrouselPopulares/>
-      <CarrouselLoMasVotado/>
+      <CarrouselPopulares />
+      <CarrouselLoMasVotado />
       {/* {id && <DetailMovie movieId={id} />} */}
     </Box>
   );

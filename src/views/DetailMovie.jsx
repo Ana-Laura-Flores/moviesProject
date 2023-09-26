@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TrailerViewer from "./TrailerViewer";
+import TrailerViewer from "../components/TrailerViewer";
 import {
   Dialog,
   DialogContent,

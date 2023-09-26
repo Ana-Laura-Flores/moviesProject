@@ -8,6 +8,7 @@ export default function useMovies(initialValue) {
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState()
   const [yearMovie, setYearMovie] = useState()
+  const [error, setError] = useState(null)
 
   const getData = async (url) => {
     try {
@@ -18,9 +19,9 @@ export default function useMovies(initialValue) {
       data.release_date ? setYearMovie(data.release_date.split("-")[0]) : null
       data ? setLoading(false) : true
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
-console.log(totalPages)
-  return { data, getData, totalPages, genres, loading, yearMovie};
+
+  return { data, getData, totalPages, genres, loading, yearMovie, error};
 }

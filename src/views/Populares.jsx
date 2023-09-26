@@ -13,8 +13,7 @@ export default function Populares() {
     useEffect(() => {
       getData(`https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
     },  [currentPage])
-    console.log(data)
-    console.log(data.total_pages)
+    
   return (
     <Box
       sx={{
