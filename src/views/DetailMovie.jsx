@@ -37,6 +37,7 @@ export default function DetailMovie() {
   }, []);
  
   return (
+    
     <Box
       sx={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.4)), url( ${ data.backdrop_path ? `https://image.tmdb.org/t/p/original${data.backdrop_path}?api_key=${apiKey}` : notImageBackdrop })`,

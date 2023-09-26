@@ -4,6 +4,7 @@ import { Box, InputBase } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import useMovies from "../customHooks/useMovies.js";
 import ContainCards from "../components/ContainCards.jsx";
+import { RiseLoader } from "react-spinners";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -50,7 +51,7 @@ export default function SearchMovie() {
   const [keywordSearch, setKeywordSearch] = useState("");
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const [currentPage, setCurrentPage] = useState(1)
-  const { getData, data, totalPages } = useMovies([]);
+  const { getData, data, totalPages, loading } = useMovies([]);
 
   
 
@@ -82,9 +83,17 @@ export default function SearchMovie() {
         </Search>
        
       </Box>
+      {!data.results ? (
+        <Box height={"auto"} padding={5} sx={{ display:"flex", justifyContent:"center", alignItems: "center"}}>
+          <RiseLoader
+            loading={loading}
+            sx={{ display:"flex", justifyContent:"center", alignItems: "center", color: "black", padding: 2, height: "30px" }}
+          />
+        </Box>
+      ) : (
       <Box>
         <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
-      </Box>
+      </Box> )}
     </Box>
   );
 }

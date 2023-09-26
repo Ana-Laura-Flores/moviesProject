@@ -3,11 +3,12 @@ import React from "react";
 import ContainCards from "../components/ContainCards";
 import { useEffect, useState } from "react";
 import useMovies from "../customHooks/useMovies";
-import PaginationApp from '../components/PaginationApp';
+
+import { RiseLoader } from "react-spinners";
 
 
 export default function Populares() {
-    const { getData, data, totalPages } = useMovies([]);
+    const { getData, data, totalPages, loading } = useMovies([]);
     const [currentPage, setCurrentPage] = useState(1)
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
     useEffect(() => {
@@ -36,9 +37,18 @@ export default function Populares() {
       >
         Populares
       </Paper>
+      {!data.results ? (
+        <Box height={"auto"} padding={5}>
+          <RiseLoader
+            loading={loading}
+            sx={{ color: "black", padding: 2, height: "30px" }}
+          />
+        </Box>
+      ) : (
       <Box>
         <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
       </Box>
+      )}
       {/* <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/> */}
     </Box>
   );
