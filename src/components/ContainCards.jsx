@@ -15,8 +15,8 @@ export default function ContainCards({data, currentPage, setCurrentPage, totalPa
         padding: "20px"
         
         }}>
-        {data && data.map (({title, id, backdrop_path, overview}) => {
-            return ( <CardMovie title={title} id={id} backdrop_path={backdrop_path} overview={overview} key={id}/> )
+        {data && data.map ((movie) => {
+            return ( <CardMovie title={movie.title} id={movie.id} backdrop_path={movie.backdrop_path} overview={movie.overview} movie={movie} key={movie.id}/> )
         })}
        
       </Box>

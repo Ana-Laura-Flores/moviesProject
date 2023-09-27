@@ -9,11 +9,15 @@ import TopRated from "./views/TopRated.jsx";
 import Footer from "./components/Footer.jsx";
 import SearchMovie from "./views/SearchMovie.jsx";
 
+import FavoriteContextProvider from "./context/FavoriteContext.jsx";
+import FavoritesMovies from "./views/FavoritesMovies.jsx";
+
 export default function App() {
   
 
   return (
     <BrowserRouter>
+    <FavoriteContextProvider>
       <NavBar />
       <Routes>
         <Route path="/detailMovies/:id" element={<DetailMovie />} />
@@ -25,8 +29,10 @@ export default function App() {
         <Route path="/populares" element={<Populares />}></Route>
         <Route path="/top10" element={<TopRated />}></Route>
         <Route path="/buscar" element={<SearchMovie />}></Route>
+        <Route path="/favoritas" element={<FavoritesMovies />}></Route>
       </Routes>
       <Footer />
+      </FavoriteContextProvider>
     </BrowserRouter>
   );
 }

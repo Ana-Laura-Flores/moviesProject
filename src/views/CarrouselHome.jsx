@@ -13,7 +13,7 @@ import useMovies from "../customHooks/useMovies.js";
 export default function CarrouselHome() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const { getData, data, loading } = useMovies([]);
-  const [id, setId] = useState(null);
+  //const [id, setId] = useState(null);
 
   useEffect(() => {
     getData(
@@ -21,16 +21,16 @@ export default function CarrouselHome() {
     );
   }, []);
 
-  const handleClick = (movieId) => {
-    setId(movieId.id);
-  };
+  // const handleClick = (movieId) => {
+  //   setId(movieId.id);
+  // };
 
   return (
     <Box sx={{ marginTop: "50px", margin: "15px" }}>
       <Carousel
         showArrows={true}
         autoPlay={true}
-        onClickItem={handleClick}
+        //onClickItem={handleClick}
         dynamicHeight={false}
         interval={2000}
       >

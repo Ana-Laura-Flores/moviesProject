@@ -59,7 +59,7 @@ export default function SearchMovie() {
     getData(
       keywordSearch
         ? `https://api.themoviedb.org/3/search/movie?language=es-ES&page=${currentPage}&api_key=${apiKey}&query=${keywordSearch}`
-        : `https://api.themoviedb.org/3/movie/now_playing?language=es-ES&api_key=${apiKey}`
+        : `https://api.themoviedb.org/3/discover/movie?language=es-ES&page=${currentPage}&api_key=${apiKey}`
     );
   }, [keywordSearch, currentPage]);
 
