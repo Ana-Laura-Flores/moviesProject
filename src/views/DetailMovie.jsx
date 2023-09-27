@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TrailerViewer from "../components/TrailerViewer";
 import {
   Dialog,
@@ -12,12 +12,16 @@ import { useParams } from "react-router-dom";
 import useMovies from "../customHooks/useMovies";
 import notImageBackdrop from '../assets/img/not-image-backdrop.jpg'
 import notImagenPoster from '../assets/img/not-image-poster.jpg'
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FavoriteContext } from "../context/FavoriteContext.jsx";
 
 export default function DetailMovie() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const { id } = useParams();
   const { data, genres, getData, yearMovie } = useMovies([]);
   
+  const { getFavorite, addFavorite, removeFavorite } =
+    useContext(FavoriteContext);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   const openVideoModal = () => {
@@ -85,7 +89,12 @@ export default function DetailMovie() {
           <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "60%", md:"95%"}, alignItems: "center", marginTop: {xs: 3}, padding: 3, borderRadius:"10px", backgroundColor:"#FFFFFF80"}}>
             <Typography gutterBottom variant="h4" component="div" sx={{display:"flex", flexDirection: {xs:"column", md:"row"}, alignItems:"center"}}> 
               {data.title} 
-              <Typography variant="h5" sx={{marginLeft: 1, fontWeight:"bold", color:"#333" }}> {yearMovie}</Typography>
+              <Typography variant="h5" sx={{marginLeft: {md:3}, marginRight:{md:3}, fontWeight:"bold", color:"#333" }}> {yearMovie}</Typography>
+              {getFavorite(data.id) ? (
+              <AiFillHeart size={25} onClick={() => removeFavorite(data)} />
+            ) : (
+              <AiOutlineHeart size={25} onClick={() => addFavorite(data)} />
+            )}
             </Typography>
             <Typography component="div" marginTop="5px" variant="h6">
               Descripción:

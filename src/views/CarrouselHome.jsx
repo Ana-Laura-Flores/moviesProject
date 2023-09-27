@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CarrouselLoMasVotado from "./Carrousels/CarrouselLoMasVotado";
 import CarrouselPopulares from "./Carrousels/CarrouselPopulares";
 
