@@ -61,7 +61,7 @@ export default function CardMovie({ movie }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             sx={{
-              transform: isHovered ? "scale(1)" : "scale(0.9)", // Agranda la imagen en el hover
+              transform: isHovered ? "scale(1)" : "scale(0.9)", 
               transition: "transform 0.3s ease-in-out",
 
             }}

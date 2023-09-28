@@ -4,7 +4,7 @@
 # Películas TMDB App
 [link del repo](https://github.com/Ana-Laura-Flores/moviesProject)
 
-[link del deploy](https://ana-laura-flores.github.io/ahorradas-proyect-javascript/)
+[link del deploy](https://movies-project-ana-laura-flores.vercel.app/)
 
 Este proyecto es una aplicación web que muestra información sobre películas utilizando la API de The Movie Database (TMDB). La aplicación está construida con React, Vite y Material-UI, Swiper, utiliza localStorage.
 
@@ -25,5 +25,11 @@ Contenedor de las cards Movies
 
 ![detalles](./src/assets/img/details.jpg)
 Detalle de las películas
+
+![nena de pelo negro](./src/assets/img/logo_krear.png)
+<br>
+<p style="font-family:Arial; font-size:24px;"> Ana Laura Flores </p>
+<p style="font-family:Arial; font-size:12px; color:#d813be"> (DISEÑADORA GRÁFICA UBA - ESTUDIANTE FRONTEND) </p>
+
 
 

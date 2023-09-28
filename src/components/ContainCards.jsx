@@ -7,9 +7,10 @@ export default function ContainCards({data, currentPage, setCurrentPage, totalPa
  
   return (
     <div>
-     <Box>
+     <Box sx={{width: "95%"}}>
      <Box sx={{
         display:"flex", 
+        width: "90%",
         justifyContent:"space-around", 
         flexWrap:"wrap",
         padding: "20px"

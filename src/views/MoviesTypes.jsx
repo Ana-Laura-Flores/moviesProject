@@ -11,6 +11,7 @@ export default function MoviesTypes({type, titleType}) {
     const [currentPage, setCurrentPage] = useState(1)
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
     useEffect(() => {
+    
       getData(`https://api.themoviedb.org/3/movie/${type}?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
     },  [currentPage, titleType])
     
