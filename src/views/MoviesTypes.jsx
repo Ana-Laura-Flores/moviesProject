@@ -9,9 +9,15 @@ import { RiseLoader } from "react-spinners";
 export default function MoviesTypes({type, titleType}) {
     const { getData, data, totalPages, loading } = useMovies([]);
     const [currentPage, setCurrentPage] = useState(1)
+    const [prevType, setPrevType] = useState(null);
+
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
-    useEffect(() => {
     
+    useEffect(() => {
+      if (type !== prevType) {
+        setCurrentPage(1);
+        setPrevType(type); 
+      }
       getData(`https://api.themoviedb.org/3/movie/${type}?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
     },  [currentPage, titleType])
     
