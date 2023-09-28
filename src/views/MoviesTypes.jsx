@@ -6,14 +6,13 @@ import useMovies from "../customHooks/useMovies";
 
 import { RiseLoader } from "react-spinners";
 
-
-export default function Populares() {
+export default function MoviesTypes({type, titleType}) {
     const { getData, data, totalPages, loading } = useMovies([]);
     const [currentPage, setCurrentPage] = useState(1)
     const apiKey = import.meta.env.VITE_TMDB_API_KEY
     useEffect(() => {
-      getData(`https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
-    },  [currentPage])
+      getData(`https://api.themoviedb.org/3/movie/${type}?language=es-ES&page=${currentPage}&api_key=${apiKey}`)
+    },  [currentPage, titleType])
     
   return (
     <Box
@@ -35,13 +34,14 @@ export default function Populares() {
           fontWeight: "bold",
         }}
       >
-        Populares
+       {titleType}
       </Paper>
       {!data.results ? (
         <Box height={"auto"} padding={5}>
           <RiseLoader
             loading={loading}
-            sx={{ color: "black", padding: 2, height: "30px" }}
+            color="whitesmoke"
+            sx={{ padding: 2, height: "30px" }}
           />
         </Box>
       ) : (
@@ -49,7 +49,7 @@ export default function Populares() {
         <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
       </Box>
       )}
-      {/* <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/> */}
+    
     </Box>
   );
 }

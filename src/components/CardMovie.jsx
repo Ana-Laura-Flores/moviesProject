@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import {
   CardActionArea,
@@ -20,6 +20,15 @@ export default function CardMovie({ movie }) {
 
   const { getFavorite, addFavorite, removeFavorite } =
     useContext(FavoriteContext);
+    const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
     <Paper
@@ -49,6 +58,13 @@ export default function CardMovie({ movie }) {
             }
             alt={movie.title}
             key={movie.id}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            sx={{
+              transform: isHovered ? "scale(1)" : "scale(0.9)", // Agranda la imagen en el hover
+              transition: "transform 0.3s ease-in-out",
+
+            }}
           />
         </CardActionArea>
       </Link>

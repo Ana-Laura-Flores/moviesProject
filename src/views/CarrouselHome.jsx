@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import CarrouselLoMasVotado from "./Carrousels/CarrouselLoMasVotado";
-import CarrouselPopulares from "./Carrousels/CarrouselPopulares";
+
+import Carrousel from "../components/Carrousel";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import { Carousel as CarouselReact} from "react-responsive-carousel";
 
 import { Box } from "@mui/material";
 import { RiseLoader } from "react-spinners";
@@ -13,7 +13,7 @@ import useMovies from "../customHooks/useMovies.js";
 export default function CarrouselHome() {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const { getData, data, loading } = useMovies([]);
-  //const [id, setId] = useState(null);
+ 
 
   useEffect(() => {
     getData(
@@ -21,16 +21,12 @@ export default function CarrouselHome() {
     );
   }, []);
 
-  // const handleClick = (movieId) => {
-  //   setId(movieId.id);
-  // };
-
   return (
-    <Box sx={{ marginTop: "50px", margin: "15px" }}>
-      <Carousel
+    <Box sx={{ marginTop: "50px", margin: "15px", backgroundColor:"#1e1e1e" }}>
+      <CarouselReact
         showArrows={true}
         autoPlay={true}
-        //onClickItem={handleClick}
+        showThumbs={false}
         dynamicHeight={false}
         interval={2000}
       >
@@ -38,7 +34,8 @@ export default function CarrouselHome() {
           <Box height={"auto"} padding={5}>
             <RiseLoader
               loading={loading}
-              sx={{ color: "black", padding: 2, height: "30px" }}
+              color={"whitesmoke"}
+              sx={{ padding: 2, height: "30px" }}
             />
           </Box>
         ) : (
@@ -81,9 +78,10 @@ export default function CarrouselHome() {
             </div>
           ))
         )}
-      </Carousel>
-      <CarrouselPopulares />
-      <CarrouselLoMasVotado />
+      </CarouselReact>
+      <Carrousel url={`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`} title="Popular" />
+      <Carrousel url={`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`} title="Lo más Votado" />
+      {/* <CarrouselLoMasVotado /> */}
       {/* {id && <DetailMovie movieId={id} />} */}
     </Box>
   );

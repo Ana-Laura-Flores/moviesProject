@@ -6,7 +6,6 @@ import useMovies from "../customHooks/useMovies.js";
 import ContainCards from "../components/ContainCards.jsx";
 import { RiseLoader } from "react-spinners";
 
-
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -50,10 +49,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchMovie() {
   const [keywordSearch, setKeywordSearch] = useState("");
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   const { getData, data, totalPages, loading } = useMovies([]);
-
-  
 
   useEffect(() => {
     getData(
@@ -63,13 +60,17 @@ export default function SearchMovie() {
     );
   }, [keywordSearch, currentPage]);
 
-  const handleChangeInput = (e) => {
-    setKeywordSearch(e.target.value);
-  };
-
+ 
   return (
     <Box>
-      <Box sx={{ flexGrow: 0, padding:3, backgroundColor: "#1e1e1e", color:"whitesmoke" }}>
+      <Box
+        sx={{
+          flexGrow: 0,
+          padding: 3,
+          backgroundColor: "#1e1e1e",
+          color: "whitesmoke",
+        }}
+      >
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -77,23 +78,42 @@ export default function SearchMovie() {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
-            //onChange={handleChangeInput}
-            onChange={(e) => setKeywordSearch (e.target.value)}
+            onChange={(e) => setKeywordSearch(e.target.value)}
           />
         </Search>
-       
       </Box>
       {!data.results ? (
-        <Box height={"auto"} padding={5} sx={{ display:"flex", justifyContent:"center", alignItems: "center"}}>
+        <Box
+          height={"auto"}
+          padding={5}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <RiseLoader
             loading={loading}
-            sx={{ display:"flex", justifyContent:"center", alignItems: "center", color: "black", padding: 2, height: "30px" }}
+            color="whitesmoke"
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 2,
+              height: "30px",
+            }}
           />
         </Box>
       ) : (
-      <Box>
-        <ContainCards data={data.results} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
-      </Box> )}
+        <Box>
+          <ContainCards
+            data={data.results}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        </Box>
+      )}
     </Box>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useMovies from "../../customHooks/useMovies";
+import useMovies from "../customHooks/useMovies";
 
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -12,49 +12,44 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export default function CarrouselLoMasVotado() {
+export default function Carrousel({ url, title }) {
   const { data, getData } = useMovies([]);
   const [id, setId] = useState("");
-  const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+  
 
   useEffect(() => {
-    getData(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`);
+    getData(url);
   }, []);
 
   const handleClick = (movieId) => {
     setId(movieId.id);
-    
   };
+
   
   return (
     <Box sx={{ marginTop: "50px", margin: "15px" }}>
       <Typography
         sx={{
-          color: "black",
+          color: "whitesmoke",
           fontSize: "1rem",
           fontWeight: "bold",
-          marginTop: "80px",
+          marginTop: "30px",
           marginBottom: "10px",
         }}
       >
-        Lo más votado
+        {title}
       </Typography>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={10}
         slidesPerView={3}
         navigation
-        //pagination={{ clickable: true }}
-
-        //  onSlideChange={() => ('slide change')}
-        //  onSwiper={(swiper) => (swiper)}
       >
-        {/* <Link to={`/`} style={{cursor:"pointer"}}> */}
         {data.results &&
           data.results.map((movie) => (
             <SwiperSlide key={movie.id} onClick={() => handleClick(movie.id)}>
               <Link to={`/detailMovies/${movie.id}`}>
-                <img
+                <img className=".swiper-slide img:hover"
                   style={{
                     width: "100%",
                     aspectRatio: "16/9",
@@ -67,7 +62,7 @@ export default function CarrouselLoMasVotado() {
               </Link>
               <Typography
                 sx={{
-                  color: "black",
+                  color: "whitesmoke",
                   fontSize: "0.7rem",
                   marginTop: "0px",
                   fontWeight: "bold",
@@ -78,7 +73,6 @@ export default function CarrouselLoMasVotado() {
             </SwiperSlide>
           ))}
 
-        {/* </Link> */}
       </Swiper>
     </Box>
   );

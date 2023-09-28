@@ -1,23 +1,35 @@
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-
+import { styled, alpha } from '@mui/material/styles';
 export default function PaginationApp({ setCurrentPage, currentPage, totalPages }) {
   const handleChangePage = (e, page) => {
     setCurrentPage(page);
   };
+  const PagesPersonal = styled(Pagination)(({ theme }) => ({
+    color: 'whitesmoke',
+    
+    
+  }));
   return (
     <Stack
       spacing={2}
       margin="30px"
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      className=".pagination"
+      
+      sx={{ display: "flex", color:"whitesmoke", justifyContent: "center", alignItems: "center" }}
     >
-      <Pagination
+      <PagesPersonal 
+      
         count={(totalPages > 500) ? 500 : totalPages}
         onChange={handleChangePage}
         page={currentPage}
-        variant="outlined"
+        color="secondary"
+        variant="text"
         shape="rounded"
+        
+        className=".pagination"
+        
       />
     </Stack>
   );
