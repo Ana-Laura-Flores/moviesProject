@@ -24,18 +24,21 @@ export default function MoviesTypes({type, titleType}) {
   return (
     <Box
       sx={{
-        width: { xs: "80%", md: "95%" },
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
+        
       }}
     >
+      <Box sx={{width: {xs:"85%", md:"95%"}}}>
       <Paper
         elevation={3}
         sx={{
+          display:"flex",
           padding: 3,
-          width: "90%",
+          
           marginTop: 2,
           fontSize: "1,5rem",
           fontWeight: "bold",
@@ -43,8 +46,10 @@ export default function MoviesTypes({type, titleType}) {
       >
        {titleType}
       </Paper>
+      </Box>
+      
       {!data.results ? (
-        <Box height={"auto"} padding={5}>
+        <Box height={"auto"} >
           <RiseLoader
             loading={loading}
             color="whitesmoke"

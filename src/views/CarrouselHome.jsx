@@ -47,7 +47,7 @@ export default function CarrouselHome() {
               />
               <div
                 className="legend"
-                style={{ opacity: 0.7, padding: "15px 5px" }}
+                style={{ opacity: 0.7, padding: "10px 5px" }}
               >
                 <p
                   style={{
@@ -59,7 +59,7 @@ export default function CarrouselHome() {
                   {movie.title}
                 </p>
                 <p style={{ color: "whitesmoke", fontSize: "0.6rem" }}>
-                  {movie.overview}
+                  {(movie.overview.length > 100 ? movie.overview.substring(0, 100) + "..." : movie.overview)}
                 </p>
                 <Link to={`/detailMovies/${movie.id}`}>
                   <button

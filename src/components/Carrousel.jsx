@@ -24,7 +24,6 @@ export default function Carrousel({ url, title }) {
   const handleClick = (movieId) => {
     setId(movieId.id);
   };
-
   
   return (
     <Box sx={{ marginTop: "50px", margin: "15px" }}>
@@ -44,6 +43,7 @@ export default function Carrousel({ url, title }) {
         spaceBetween={10}
         slidesPerView={3}
         navigation
+        
       >
         {data.results &&
           data.results.map((movie) => (

@@ -86,7 +86,7 @@ export default function DetailMovie() {
             alt=""
             style={{ width: "30%" }}
           />
-          <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "60%", md:"95%"}, alignItems: "center", marginTop: {xs: 3}, padding: 3, borderRadius:"10px", backgroundColor:"#FFFFFF80"}}>
+          <Box marginLeft={{ xs: 0, md: 5 }} sx={{width: {xs: "85%", md:"95%"}, alignItems: "center", marginTop: {xs: 3}, padding: 3, borderRadius:"10px", backgroundColor:"#FFFFFF80"}}>
             <Typography gutterBottom variant="h4" component="div" sx={{display:"flex", flexDirection: {xs:"column", md:"row"}, alignItems:"center"}}> 
               {data.title} 
               <Typography variant="h5" sx={{marginLeft: {md:3}, marginRight:{md:3}, fontWeight:"bold", color:"#333" }}> {yearMovie}</Typography>
