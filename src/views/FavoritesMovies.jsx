@@ -7,14 +7,7 @@ import { Box } from "@mui/material";
 export default function FavoritesMovies() {
     const { allFavorits } = useContext(FavoriteContext);
     return (
-        <Box
-            sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
+        <Box>
             {allFavorits.length ? (
                 <ContainCards data={allFavorits} />
             ) : (
