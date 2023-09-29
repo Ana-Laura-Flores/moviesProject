@@ -10,6 +10,7 @@ import SearchMovie from "./views/SearchMovie.jsx";
 import FavoriteContextProvider from "./context/FavoriteContext.jsx";
 import FavoritesMovies from "./views/FavoritesMovies.jsx";
 import MoviesTypes from "./views/MoviesTypes.jsx";
+import NotFound from "./components/NotFound.jsx";
 
 export default function App() {
     return (
@@ -17,8 +18,9 @@ export default function App() {
             <FavoriteContextProvider>
                 <NavBar />
                 <Routes>
+                    
                     <Route path="/detailMovies/:id" element={<DetailMovie />} />
-                    <Route path="/" element={<CarrouselHome />}></Route>
+                    <Route path="/" element={<CarrouselHome />} exact />
                     <Route
                         path="/novedades"
                         element={
@@ -27,13 +29,13 @@ export default function App() {
                                 titleType="Novedades"
                             />
                         }
-                    ></Route>
+                    />
                     <Route
                         path="/populares"
                         element={
                             <MoviesTypes type="popular" titleType="Populares" />
                         }
-                    ></Route>
+                    />
                     <Route
                         path="/top10"
                         element={
@@ -42,12 +44,13 @@ export default function App() {
                                 titleType="Más Votadas"
                             />
                         }
-                    ></Route>
-                    <Route path="/buscar" element={<SearchMovie />}></Route>
+                    />
+                    <Route path="/buscar" element={<SearchMovie />}/>
                     <Route
                         path="/favoritas"
                         element={<FavoritesMovies />}
-                    ></Route>
+                    />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
             </FavoriteContextProvider>
