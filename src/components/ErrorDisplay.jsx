@@ -1,8 +1,9 @@
 import { Box } from "@mui/system";
 import React from "react";
 import notFound from "../assets/img/not-data.jpg";
+import notFavorites from "../assets/img/not-favorite-movies.jpg";
 
-export default function NotFound() {
+export default function ErrorDisplay({ type }) {
     return (
         <Box
             sx={{
@@ -13,7 +14,11 @@ export default function NotFound() {
                 padding: 3,
             }}
         >
-            <img src={notFound} style={{ width: "60%", minWidth:"60%"}} alt="" />
+            <img
+                src={type === "notFound" ? notFound : notFavorites}
+                style={{ width: "60%", minWidth: "60%" }}
+                alt=""
+            />
         </Box>
     );
 }

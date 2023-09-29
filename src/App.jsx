@@ -10,7 +10,7 @@ import SearchMovie from "./views/SearchMovie.jsx";
 import FavoriteContextProvider from "./context/FavoriteContext.jsx";
 import FavoritesMovies from "./views/FavoritesMovies.jsx";
 import MoviesTypes from "./views/MoviesTypes.jsx";
-import NotFound from "./components/NotFound.jsx";
+import ErrorDisplay from "./components/ErrorDisplay.jsx";
 
 export default function App() {
     return (
@@ -18,7 +18,6 @@ export default function App() {
             <FavoriteContextProvider>
                 <NavBar />
                 <Routes>
-                    
                     <Route path="/detailMovies/:id" element={<DetailMovie />} />
                     <Route path="/" element={<CarrouselHome />} exact />
                     <Route
@@ -45,12 +44,12 @@ export default function App() {
                             />
                         }
                     />
-                    <Route path="/buscar" element={<SearchMovie />}/>
+                    <Route path="/buscar" element={<SearchMovie />} />
+                    <Route path="/favoritas" element={<FavoritesMovies />} />
                     <Route
-                        path="/favoritas"
-                        element={<FavoritesMovies />}
+                        path="*"
+                        element={<ErrorDisplay type="notFound" />}
                     />
-                    <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Footer />
             </FavoriteContextProvider>

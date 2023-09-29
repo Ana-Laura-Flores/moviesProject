@@ -9,10 +9,11 @@ import { Box } from "@mui/material";
 import { RiseLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import useMovies from "../customHooks/useMovies.js";
+import ErrorDisplay from "../components/ErrorDisplay";
 
 export default function CarrouselHome() {
     const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-    const { getData, data, loading } = useMovies([]);
+    const { getData, data, loading, error } = useMovies([]);
 
     useEffect(() => {
         getData(
@@ -35,7 +36,9 @@ export default function CarrouselHome() {
                 dynamicHeight={false}
                 interval={2000}
             >
-                {!data.results ? (
+                {error ? (
+                    <ErrorDisplay type="notFound" />
+                ) : !data.results ? (
                     <Box height={"auto"} padding={5}>
                         <RiseLoader
                             loading={loading}

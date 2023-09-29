@@ -95,7 +95,9 @@ export default function CardMovie({ movie }) {
                 </Box>
 
                 <Typography variant="body2" color="text.secondary">
-                    {movie.overview}
+                    {movie.overview.length > 100
+                        ? movie.overview.substring(0, 100) + "..."
+                        : movie.overview}
                 </Typography>
             </CardContent>
         </Paper>

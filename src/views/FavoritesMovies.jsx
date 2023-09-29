@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FavoriteContext } from "../context/FavoriteContext";
 import ContainCards from "../components/ContainCards";
-import NotFavorites from "../components/NotFavorites";
+import ErrorDisplay from "../components/ErrorDisplay";
 import { Box } from "@mui/material";
 
 export default function FavoritesMovies() {
@@ -18,7 +18,7 @@ export default function FavoritesMovies() {
             {allFavorits.length ? (
                 <ContainCards data={allFavorits} />
             ) : (
-                <NotFavorites />
+                <ErrorDisplay />
             )}
         </Box>
     );
