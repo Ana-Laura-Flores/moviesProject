@@ -1,29 +1,46 @@
-import{ Box} from "@mui/material"
+import { Box } from "@mui/material";
 
-import CardMovie from "./CardMovie"
-import PaginationApp from "./PaginationApp"
+import CardMovie from "./CardMovie";
+import PaginationApp from "./PaginationApp";
 
-export default function ContainCards({data, currentPage, setCurrentPage, totalPages}) {
- 
-  return (
-    <div>
-     <Box>
-     <Box sx={{
-        display:"flex", 
-        width: "95%",
-        justifyContent:"space-around", 
-        flexWrap:"wrap",
-        padding: "20px"
-        
-        }}>
-        {data && data.map ((movie) => {
-            return ( <CardMovie title={movie.title} id={movie.id} backdrop_path={movie.backdrop_path} overview={movie.overview} movie={movie} key={movie.id}/> )
-        })}
-       
-      </Box>
-      <PaginationApp setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>
-     </Box>
-    
-    </div>
-  )
+export default function ContainCards({
+    data,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+}) {
+    return (
+        <div>
+            <Box>
+                <Box
+                    sx={{
+                        display: "flex",
+                        width: "95%",
+                        justifyContent: "space-around",
+                        flexWrap: "wrap",
+                        padding: "20px",
+                    }}
+                >
+                    {data &&
+                        data.map((movie) => {
+                            return (
+                                <CardMovie
+                                    title={movie.title}
+                                    id={movie.id}
+                                    backdrop_path={movie.backdrop_path}
+                                    overview={movie.overview}
+                                    movie={movie}
+                                    key={movie.id}
+                                />
+                            );
+                        })}
+                </Box>
+                <PaginationApp
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                />
+            </Box>
+        </div>
+    );
 }
